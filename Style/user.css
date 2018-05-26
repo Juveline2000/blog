@@ -1,0 +1,132 @@
+input {
+	border:1px solid #D5D5D5;
+}
+
+#loginImg{
+	
+	widht:180px;
+	height:180px;
+	text-align:center;
+}
+
+body,html {
+	height: 100%;
+	margin: 0;
+	padding: 0
+}
+
+body {
+	background: #f1f1f1;
+}
+
+
+
+
+p {
+	line-height: 1.5
+}
+
+.login #login_error,.login .message {
+	border-left: 4px solid #00a0d2;
+	padding: 12px;
+	margin-left: 0;
+	background-color: #fff;
+	-webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1)
+}
+
+.login #login_error {
+	border-left-color: #dc3232
+}
+
+#loginform p.submit, p.submit {
+	border: none;
+	margin: -10px 0 20px
+}
+
+.login * {
+	margin: 0;
+	padding: 0
+}
+
+.login form {
+	margin-top: 20px;
+	margin-left: 0;
+	padding: 26px 24px 46px;
+	background: #fff;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .13);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .13)
+}
+
+.login form .forgetmenot {
+	font-weight: 400;
+	float: left;
+	margin-bottom: 0
+}
+
+.login .button-primary {
+	float: right
+}
+
+#login form p {
+	margin-bottom: 0
+}
+
+#login form p.submit {
+	margin: 0;
+	padding: 0
+}
+
+.login label {
+	color: #72777c;
+	font-size: 14px
+}
+
+.login form .forgetmenot label {
+	font-size: 12px;
+	line-height: 19px
+}
+
+
+
+#login {
+	width: 320px;
+	padding: 8% 0 0;
+	margin: auto
+}
+
+.login #backtoblog,.login {
+	font-size: 13px;
+	padding: 0 24px
+}
+#nav{
+	font-size: 13px;
+	margin: 30px 0 0;
+	padding: 0 24px;
+}
+.login {
+	margin: 24px 0 0
+}
+
+#backtoblog {
+	margin: 16px 0
+}
+
+.login #backtoblog a,.login #nav a {
+	text-decoration: none;
+	color: #555d66
+}
+
+
+
+.login form .input,.login input[type=text] {
+	font-size: 20px;
+	width: 100%;
+	padding: 3px;
+	margin: 2px 6px 16px 0
+}
+
+.login form .input,.login form input[type=checkbox],.login input[type=text]
+	{
+	background: #fbfbfb
+}

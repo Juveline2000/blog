@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gao.dao.LeavingMessageDao">
+	<resultMap type="LeavingMessage" id="LeavingMessageResult">
+		<result property="id" column="id"/>
+		<result property="commentPage" column="commentPage"/>
+		<result property="commentNickName" column="commentNickName"/>
+		<result property="reviewcontent" column="reviewcontent"/>
+		<result property="commentTime" column="commentTime"/>
+		<association property="replyList" column="id" select="com.gao.dao.ReplyDao.findById"/>
+	</resultMap>
+	<select id="find" parameterType="Map" resultMap="LeavingMessageResult">
+		select * from g_leavingMessage 
+		<where>
+			<if test="commentPage!=null and commentPage!=''">
+				commentPage=#{commentPage}
+			</if>
+			<if test="reviewcontent!=null and reviewcontent!=''">
+				reviewcontent like #{reviewcontent}
+			</if>
+			<if test="id!=null and id!=''">
+				id = #{id}
+			</if>
+		</where>
+		 order by id desc
+		 <if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	<select id="getTotal" parameterType="Map" resultType="Long" >
+		select count(id) from g_leavingMessage 
+		<where>
+			<if test="commentPage!=null and commentPage!=''">
+				commentPage=#{commentPage}
+			</if>
+			<if test="reviewcontent!=null and reviewcontent!=''">
+				reviewcontent like #{reviewcontent}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findById" parameterType="Integer" resultMap="LeavingMessageResult">
+		select * from g_leavingMessage where id=#{id}
+	</select>
+	<insert id="save" parameterType="LeavingMessage">
+		insert into g_leavingMessage values(null,#{commentPage},#{commentNickName},#{reviewcontent},#{commentTime},#{commentEmail})
+	</insert>
+	
+	<delete id="delete" parameterType="String">
+		delete from g_leavingMessage where id=#{id}
+	</delete>
+	<!-- <select id="find" parameterType="Map" resultMap="UserResult">
+		select * from g_user
+		<where>
+			<if test="userName!=null and userName!='' ">
+				and userName like #{userName}
+			</if>
+			<if test="roleName!=null and roleName!='' ">
+				and roleName like #{roleName}
+			</if>
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	<select id="getTotal" parameterType="Map" resultType="Long" >
+		select count(*) from g_user
+		<where>
+			<if test="userName!=null and userName!='' ">
+				and userName like #{userName}
+			</if>
+			<if test="roleName!=null and roleName!='' ">
+				and roleName like #{roleName}
+			</if>
+		</where>
+	</select>
+	
+	
+	<insert id="add" parameterType="User">
+		insert into g_user values(null,#{userName},#{password},#{trueName},#{email},#{phone},#{roleName})
+	</insert>
+	
+	<update id="update" parameterType="User">
+		update g_user set userName=#{userName},password=#{password},roleName=#{roleName},trueName=#{trueName},email=#{email},phone=#{phone} where id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from g_user where id=#{id}
+	</delete> -->
+</mapper>

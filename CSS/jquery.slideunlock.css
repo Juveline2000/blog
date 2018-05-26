@@ -1,0 +1,44 @@
+#slide-wrapper{
+    width: 300px;
+}
+#slider{
+    padding:20px;
+    position: relative;
+    border-radius: 2px;
+    background-color: #DDDDDD;
+    overflow: hidden;
+    text-align: center;
+    height:25px;
+}
+#slider.success{
+    background-color: #62C849;
+}
+#label{
+    width: 38px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #FFFFFF;
+    z-index: 999;
+    cursor: pointer;
+    border:1px solid #D5D5D5;
+}
+#labelTip{
+    z-index: 9;
+}
+
+#reset-btn{
+    margin: 20px 0 10px 0;
+}
+
+@media screen and (max-width: 640px) {
+    #slide-wrapper{
+        width: 64%;
+    }
+}
+
+p{
+    padding: 0 10px;
+    word-wrap: break-word;
+}
