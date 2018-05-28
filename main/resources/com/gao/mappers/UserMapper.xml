@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gao.dao.UserDao">
+	<resultMap type="User" id="UserResult">
+		<result property="id" column="id"/>
+		<result property="userName" column="userName"/>
+		<result property="password" column="password"/>
+		<result property="nickName" column="nickName"/>
+		<result property="email" column="email"/>
+		<result property="phone" column="phone"/>
+		<result property="sex" column="sex"/>
+		<result property="details" column="details"/>
+		<result property="headPortrait" column="headPortrait"/>
+		<result property="manage" column="manage"/>
+	</resultMap>
+	
+	<select id="list" parameterType="Map" resultMap="UserResult">
+		select * from g_user
+		<where> 
+			<if test="userName!=null and userName!='' ">
+				userName like #{userName}
+			</if>
+			<if test="nickName!=null and nickName!='' ">
+				nickName like #{nickName}
+			</if>
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	<select id="getTotal" parameterType="Map" resultType="Integer" >
+		select count(*) from g_user
+		<where>
+			<if test="userName!=null and userName!='' ">
+				userName like #{userName}
+			</if>
+			<if test="nickName!=null and nickName!='' ">
+				nickName like #{nickName}
+			</if>
+		</where>
+	</select>
+	
+	<select id="login" parameterType="User" resultMap="UserResult">
+		select * from g_user where 
+		<if test="userName!=null and userName!='' ">
+			userName=#{userName}
+		</if>
+		<if test="phone!=null and phone!='' ">
+			phone=#{phone}
+		</if>
+		<if test="email!=null and email!='' ">
+			email=#{email}
+		</if>
+		 and password=#{password}
+	</select>
+	<select id="findById" parameterType="Integer" resultMap="UserResult">
+		select * from g_user where id=#{id}
+	</select>
+	
+	<select id="findByName" parameterType="User" resultMap="UserResult">
+		select * from g_user where userName=#{userName}
+		
+	</select>
+	
+	<insert id="register" parameterType="User">
+		insert into g_user values(null,#{userName},#{password},#{nickName},#{email},#{sex},#{phone},#{headPortrait},#{details},0)
+	</insert>
+	
+	<update id="update" parameterType="User">
+		update g_user 
+		<set>
+			<if test="password!=null and password!=''">
+				password=#{password},
+			</if>
+			<if test="nickName!=null and nickName!=''">
+				nickName=#{nickName},
+			</if>
+			<if test="email!=null and email!=''">
+				email=#{email},
+			</if>
+			<if test="phone!=null and phone!=''">
+				phone=#{phone},
+			</if>
+			<if test="sex!=null and sex!=''">
+				sex=#{sex},
+			</if>
+			<if test="details!=null and details!=''">
+				details=#{details},
+			</if>
+			<if test="headPortrait!=null and headPortrait!=''">
+				headPortrait=#{headPortrait} 
+			</if>
+		</set>
+		 where id=#{id}
+	</update>
+	<delete id="delete" parameterType="String">
+		delete from g_user where id=#{id}
+	</delete>
+	<!-- <select id="find" parameterType="Map" resultMap="UserResult">
+		select * from g_user
+		<where>
+			<if test="userName!=null and userName!='' ">
+				and userName like #{userName}
+			</if>
+			<if test="roleName!=null and roleName!='' ">
+				and roleName like #{roleName}
+			</if>
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	
+	
+	<insert id="add" parameterType="User">
+		insert into g_user values(null,#{userName},#{password},#{trueName},#{email},#{phone},#{roleName})
+	</insert>
+	
+	<update id="update" parameterType="User">
+		update g_user set userName=#{userName},password=#{password},roleName=#{roleName},trueName=#{trueName},email=#{email},phone=#{phone} where id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from g_user where id=#{id}
+	</delete> -->
+</mapper>
